@@ -1,0 +1,38 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowMQTTConnect",
+      "Effect": "Allow",
+      "Action": "iot:Connect",
+      "Resource": "arn:aws:iot:eu-central-1:*:client/greenhouse-*"
+    },
+    {
+      "Sid": "AllowPublishSensorData",
+      "Effect": "Allow",
+      "Action": "iot:Publish",
+      "Resource": [
+        "arn:aws:iot:eu-central-1:*:topic/greenhouse/${iot:ClientId}/data",
+        "arn:aws:iot:eu-central-1:*:topic/$aws/things/${iot:ClientId}/shadow/update"
+      ]
+    },
+    {
+      "Sid": "AllowShadowSubscribe",
+      "Effect": "Allow",
+      "Action": "iot:Subscribe",
+      "Resource": [
+        "arn:aws:iot:eu-central-1:*:topicfilter/$aws/things/${iot:ClientId}/shadow/update/accepted",
+        "arn:aws:iot:eu-central-1:*:topicfilter/$aws/things/${iot:ClientId}/shadow/update/rejected"
+      ]
+    },
+    {
+      "Sid": "AllowShadowReceive",
+      "Effect": "Allow",
+      "Action": "iot:Receive",
+      "Resource": [
+        "arn:aws:iot:eu-central-1:*:topic/$aws/things/${iot:ClientId}/shadow/update/accepted",
+        "arn:aws:iot:eu-central-1:*:topic/$aws/things/${iot:ClientId}/shadow/update/rejected"
+      ]
+    }
+  ]
+}

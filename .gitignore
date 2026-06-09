@@ -27,3 +27,18 @@ dist-ssr
 .amplify
 amplify_outputs*
 amplifyconfiguration*
+
+# ESP32 firmware – certifikat och privata nycklar (ALDRIG committa!)
+firmware/certs/*.pem
+firmware/certs/*.key
+firmware/build/
+firmware/sdkconfig
+firmware/managed_components/
+
+# Lambda miljövariabler
+lambda/**/.env
+lambda/**/node_modules/
+
+# IoT temporärt
+iot/*.json.bak
+

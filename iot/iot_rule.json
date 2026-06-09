@@ -1,0 +1,12 @@
+{
+  "sql": "SELECT * FROM 'greenhouse/+/data'",
+  "ruleDisabled": false,
+  "awsIotSqlVersion": "2016-03-23",
+  "actions": [
+    {
+      "lambda": {
+        "functionArn": "arn:aws:lambda:eu-central-1:213412436415:function:iot-processor"
+      }
+    }
+  ]
+}

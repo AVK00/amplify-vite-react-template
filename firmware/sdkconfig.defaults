@@ -1,0 +1,32 @@
+# WiFi-autentiseringsuppgifter (används av menuconfig → sdkconfig.defaults)
+CONFIG_WIFI_SSID="YourNetworkSSID"
+CONFIG_WIFI_PASSWORD="YourNetworkPassword"
+
+# Kräv WPA2 minimum
+CONFIG_ESP_WIFI_AUTH_WPA2_PSK=y
+
+# Inaktivera onödiga protokoll för att minska attackytan
+CONFIG_ESP_WIFI_SOFTAP_SUPPORT=n
+CONFIG_ESP_NETIF_BRIDGE_EN=n
+
+# TLS – behåll bara TLS 1.2 och 1.3
+CONFIG_MBEDTLS_SSL_PROTO_DTLS=n
+CONFIG_MBEDTLS_SSL_PROTO_TLS1=n
+CONFIG_MBEDTLS_SSL_PROTO_TLS1_1=n
+CONFIG_MBEDTLS_SSL_PROTO_TLS1_2=y
+
+# Aktivera NVS-kryptering (skyddar lagrade certifikat)
+CONFIG_NVS_ENCRYPTION=y
+
+# Aktivera Secure Boot (kräver eFuse-konfiguration)
+# CONFIG_SECURE_BOOT=y
+# CONFIG_SECURE_BOOT_SIGNING_KEY="secure_boot_signing_key.pem"
+
+# Flash-kryptering
+# CONFIG_FLASH_ENCRYPTION_ENABLED=y
+
+# Öka main-stackens storlek för JSON-rendering
+CONFIG_ESP_MAIN_TASK_STACK_SIZE=8192
+
+# MQTT
+CONFIG_MQTT_BUFFER_SIZE=2048

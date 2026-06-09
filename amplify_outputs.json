@@ -1,9 +1,9 @@
 {
   "auth": {
-    "user_pool_id": "eu-central-1_VfnZKW2tI",
+    "user_pool_id": "eu-central-1_B82oouvC0",
     "aws_region": "eu-central-1",
-    "user_pool_client_id": "5q5bgr4d75mq4grocu1c6o9uup",
-    "identity_pool_id": "eu-central-1:16c3e7a0-b9b8-4db7-b232-eabdaaf63a03",
+    "user_pool_client_id": "1lik19nin3icvc769uo1it3ucv",
+    "identity_pool_id": "eu-central-1:3c89eff3-1a87-4b1a-8234-b9ed483d06a3",
     "mfa_methods": [],
     "standard_required_attributes": [
       "email"
@@ -25,19 +25,19 @@
     "unauthenticated_identities_enabled": true
   },
   "data": {
-    "url": "https://bxkuf4mu4bgdxpnkfzjkhixoru.appsync-api.eu-central-1.amazonaws.com/graphql",
+    "url": "https://22xwuesdjjdnngddj4egthktly.appsync-api.eu-central-1.amazonaws.com/graphql",
     "aws_region": "eu-central-1",
-    "api_key": "da2-d5iie7kqrnefzjubray6lddjki",
-    "default_authorization_type": "API_KEY",
+    "api_key": "da2-4zo3t4voybgozifdmae2byhcaq",
+    "default_authorization_type": "AMAZON_COGNITO_USER_POOLS",
     "authorization_types": [
-      "AMAZON_COGNITO_USER_POOLS",
+      "API_KEY",
       "AWS_IAM"
     ],
     "model_introspection": {
       "version": 1,
       "models": {
-        "Todo": {
-          "name": "Todo",
+        "SensorReading": {
+          "name": "SensorReading",
           "fields": {
             "id": {
               "name": "id",
@@ -46,10 +46,52 @@
               "isRequired": true,
               "attributes": []
             },
-            "content": {
-              "name": "content",
+            "deviceId": {
+              "name": "deviceId",
               "isArray": false,
               "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "timestamp": {
+              "name": "timestamp",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "temperature": {
+              "name": "temperature",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            },
+            "humidity": {
+              "name": "humidity",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            },
+            "soilMoisture": {
+              "name": "soilMoisture",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            },
+            "lightLevel": {
+              "name": "lightLevel",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            },
+            "vpd": {
+              "name": "vpd",
+              "isArray": false,
+              "type": "Float",
               "isRequired": false,
               "attributes": []
             },
@@ -71,7 +113,7 @@
             }
           },
           "syncable": true,
-          "pluralName": "Todos",
+          "pluralName": "SensorReadings",
           "attributes": [
             {
               "type": "model",
@@ -82,12 +124,226 @@
               "properties": {
                 "rules": [
                   {
+                    "allow": "private",
+                    "operations": [
+                      "read"
+                    ]
+                  },
+                  {
                     "allow": "public",
                     "provider": "apiKey",
                     "operations": [
                       "create",
-                      "update",
-                      "delete",
+                      "read"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        },
+        "Alert": {
+          "name": "Alert",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "ID",
+              "isRequired": true,
+              "attributes": []
+            },
+            "deviceId": {
+              "name": "deviceId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "timestamp": {
+              "name": "timestamp",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "alertType": {
+              "name": "alertType",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "value": {
+              "name": "value",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            },
+            "threshold": {
+              "name": "threshold",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            },
+            "resolved": {
+              "name": "resolved",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": true,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "Alerts",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "allow": "private",
+                    "operations": [
+                      "read",
+                      "update"
+                    ]
+                  },
+                  {
+                    "allow": "public",
+                    "provider": "apiKey",
+                    "operations": [
+                      "create",
+                      "read",
+                      "update"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        },
+        "SMHISnapshot": {
+          "name": "SMHISnapshot",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "ID",
+              "isRequired": true,
+              "attributes": []
+            },
+            "timestamp": {
+              "name": "timestamp",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "location": {
+              "name": "location",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "outdoorTemp": {
+              "name": "outdoorTemp",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            },
+            "outdoorHumidity": {
+              "name": "outdoorHumidity",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": false,
+              "attributes": []
+            },
+            "precipitation": {
+              "name": "precipitation",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": false,
+              "attributes": []
+            },
+            "windSpeed": {
+              "name": "windSpeed",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": false,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "SMHISnapshots",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "allow": "private",
+                    "operations": [
+                      "read"
+                    ]
+                  },
+                  {
+                    "allow": "public",
+                    "provider": "apiKey",
+                    "operations": [
+                      "create",
                       "read"
                     ]
                   }
@@ -106,5 +362,5 @@
       "nonModels": {}
     }
   },
-  "version": "1.3"
+  "version": "1.2"
 }
