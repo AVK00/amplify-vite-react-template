@@ -6,6 +6,8 @@ Realtidsövervakning av ett växthus med ESP32, AWS IoT Core och en React-dashbo
 byggd med AWS Amplify. Systemet mäter temperatur, luftfuktighet, jordfukt och ljusnivå,
 lagrar datat i DynamoDB och jämför det med utomhusväder från SMHI.
 
+![Smart Greenhouse Monitor Dashboard](docs/dashboard-screenshot.png)
+
 ---
 
 ## 📋 Kravställning
